@@ -6,6 +6,8 @@ authors = ["Kaio Brito <kaio.brito92@gmail.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.9"
+PyYAML = "^6.0"
+uritemplate = "^4.1.1"
 
 [tool.poetry.dev-dependencies]
 Django = "^3.2.9"

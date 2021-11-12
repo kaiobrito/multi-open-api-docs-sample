@@ -13,10 +13,15 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
+from rest_framework.schemas import get_schema_view
 from django.urls import path
 from django.urls.conf import include
 
 urlpatterns = [
+    path('api/schema', get_schema_view(
+        title="Dummy Project",
+        description="API for all things …",
+        version="1.0.0"
+    ), name='openapi-schema'),
     path('api/', include('dummy.urls')),
 ]
