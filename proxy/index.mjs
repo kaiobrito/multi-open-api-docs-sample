@@ -1,6 +1,11 @@
 import express from "express";
 import { createProxyMiddleware } from "http-proxy-middleware";
-import { mergeSchemas } from "./mergeSchemas.mjs";
+import { mergeSchemas } from "./src/mergeSchemas.mjs";
+import { fileURLToPath } from "url";
+import path, { dirname } from "path";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const app = express();
 const port = 8080; // default port to listen
@@ -22,6 +27,9 @@ app.get("/api/schema", async (req, res) => {
       `${BAR_API_HOST}/api/schema?format=openapi-json`,
     ])
   );
+});
+app.get("/api/docs", (req, res) => {
+  res.sendFile(path.join(__dirname, "htmls", "docs.html"));
 });
 app.use("/api/foo", fooProxy);
 app.use("/api/bar", barProxy);
