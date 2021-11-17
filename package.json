@@ -1,0 +1,19 @@
+{
+  "name": "combine-openapi",
+  "version": "1.0.0",
+  "repository": "git@github.com:kaiobrito/multi-open-api-docs-sample.git",
+  "author": "Kaio Brito <kaio.brito92@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "postinstall": "cd apis/foo && poetry install & cd apis/bar && poetry install",
+    "start": "yarn start-proxy-a & yarn start-proxy-b & yarn start-foo & yarn start-bar",
+    "start-proxy-a": "yarn workspace proxy-a run start",
+    "start-proxy-b": "yarn workspace proxy-b run start",
+    "start-foo": "cd apis/foo && poetry run ./manage.py runserver 0.0.0.0:8001",
+    "start-bar": "cd apis/bar && poetry run ./manage.py runserver 0.0.0.0:8002"
+  },
+  "workspaces": [
+    "proxies/*"
+  ]
+}
